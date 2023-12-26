@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  db-inventory:
+    image: mysql:latest
+    container_name: db-inventory
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: inventory-service
+    restart: always
+    ports:
+      - "3305:3306"
+    volumes:
+      - data-inventory:/var/lib/mysql
+    networks:
+      - shopping-network
+
+
+  db-order:
+    image: mysql:latest
+    container_name: db-order
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: order-service
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - data-order:/var/lib/mysql
+    networks:
+      - shopping-network
+
+  db-product:
+    image: mongo:latest
+    container_name: db-product
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-product:/data/db
+    networks:
+      - shopping-network
+
+
+volumes:
+  data-order:
+    name: data-order
+  data-inventory:
+    name: data-inventory
+  data-product:
+    name: data-product
+
+networks:
+  shopping-network:
