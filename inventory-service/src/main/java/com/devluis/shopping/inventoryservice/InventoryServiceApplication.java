@@ -1,24 +1,24 @@
-package com.devluis.shopping.inventaryservice;
+package com.devluis.shopping.inventoryservice;
 
-import com.devluis.shopping.inventaryservice.models.entity.Inventory;
-import com.devluis.shopping.inventaryservice.repository.InventoryRepository;
+import com.devluis.shopping.inventoryservice.models.entity.Inventory;
+import com.devluis.shopping.inventoryservice.repository.InventoryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class InventaryServiceApplication {
+public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InventaryServiceApplication.class, args);
+		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 
 	@Bean
 	public CommandLineRunner loadData(InventoryRepository inventoryRepository){
 		return args->{
 			Inventory inventory1 = new Inventory();
-			inventory1.setSkuCode("iphone_15");
+			inventory1.setSkuCode("iphone_14");
 			inventory1.setQuantity(100);
 
 			Inventory inventory2 = new Inventory();

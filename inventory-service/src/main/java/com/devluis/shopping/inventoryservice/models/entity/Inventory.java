@@ -1,4 +1,4 @@
-package com.devluis.shopping.inventaryservice.models.entity;
+package com.devluis.shopping.inventoryservice.models.entity;
 
 
 import jakarta.persistence.*;
