@@ -24,7 +24,7 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
     @Value("${ms-inventory.uri}")
     private String uriMsInventory;
 
@@ -44,7 +44,9 @@ public class OrderService {
         /*
          * Call Inventory Service, and place order if product is in stock
          */
-        InventoryResponse[] inventoryResponseArray = webClient.get()
+        InventoryResponse[] inventoryResponseArray = webClientBuilder
+                .build()
+                .get()
                 .uri(uriMsInventory, uriBuilder -> uriBuilder.queryParam("skuCodes", listSkuCode).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)

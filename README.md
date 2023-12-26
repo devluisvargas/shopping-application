@@ -8,14 +8,16 @@ The application is divided into several services, each representing a core funct
 - **Inventory Service**: Manages inventory-related operations.
 - **Order Service**: Handles order processing and management.
 - **Product Service**: Deals with product information and cataloging.
+- **Discovery Server**: Centralizes service registration and discovery using Spring Eureka Server.
 
 Each service is an independent module, showcasing the decoupled nature of microservices.
 
 ## Technologies Used
 - **Java**: The primary programming language.
-- **Spring Framework**: Utilized for building the various services in a modular and efficient manner.
+- **Spring Framework**: Used for building the services in a modular and efficient manner.
+- **Spring Eureka Server**: For service discovery and registration in the `discovery-server`.
 - **Maven**: For dependency management and project building.
-- **Docker Compose**: Employed for orchestrating database containers, ensuring a seamless integration and testing environment.
+- **Docker Compose**: For orchestrating database containers and services.
 
 ## Getting Started
 1. **Clone the Repository**: Execute `git clone https://github.com/devluisvargas/shopping-application.git` to obtain the project.
