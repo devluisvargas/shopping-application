@@ -10,13 +10,14 @@ The application is divided into several services, each representing a core funct
 - **Product Service**: Deals with product information and cataloging.
 - **API Gateway**: Facilitates routing and load balancing of microservices using Spring Cloud Gateway.
 
-Each service, including the Discovery Server and API Gateway, operates as an independent module, highlighting the decoupled nature of microservices.
+The recent addition of OAuth2 security in the API Gateway, using Keycloak and Spring Security, enhances the security posture of the application, ensuring secure communication and access control.
 
 ## Technologies Used
 - **Java**: The primary programming language.
 - **Spring Framework**: Used for building the services in a modular and efficient manner.
 - **Spring Eureka Server**: For service discovery and registration in the `discovery-server`.
 - **Spring Cloud Gateway**: Employed in the `api-gateway` for routing and load balancing.
+- **OAuth2 with Keycloak and Spring Security**: For securing the API Gateway as a resource server.
 - **Maven**: For dependency management and project building.
 - **Docker Compose**: For orchestrating database containers and services.
 
