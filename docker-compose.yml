@@ -39,6 +39,8 @@ services:
       - data-product:/data/db
     networks:
       - shopping-network
+
+
   keycloak:
     image: quay.io/keycloak/keycloak:18.0.0
     container_name: keycloak
@@ -54,6 +56,71 @@ services:
     networks:
       - shopping-network
 
+  discovery-server:
+    image: discovery-server:v1
+    container_name: discovery-server
+    restart: always
+    ports:
+      - "8761:8761"
+    env_file:
+      - discovery-server/.env
+    networks:
+      - shopping-network
+
+
+  api-gateway:
+    image: api-gateway:v1
+    container_name: api-gateway
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - api-gateway/.env
+    depends_on:
+      - discovery-server
+      - keycloak
+    networks:
+      - shopping-network
+
+  inventory-service:
+    image: inventory-service:v1
+    container_name: inventory-service
+    restart: always
+    env_file:
+      - inventory-service/.env
+    depends_on:
+      - db-inventory
+      - discovery-server
+      - api-gateway
+    networks:
+      - shopping-network
+
+  order-service:
+    image: order-service:v1
+    container_name: order-service
+    restart: always
+    env_file:
+      - order-service/.env
+    depends_on:
+      - db-order
+      - discovery-server
+      - api-gateway
+    networks:
+      - shopping-network
+
+
+  product-service:
+    image: product-service:v1
+    container_name: product-service
+    restart: always
+    env_file:
+      - product-service/.env
+    depends_on:
+      - db-product
+      - discovery-server
+      - api-gateway
+    networks:
+      - shopping-network
 volumes:
   data-order:
     name: data-order
